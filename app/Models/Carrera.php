@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Programa extends Model
+class Carrera extends Model
 {
     use HasFactory;
-    protected $fillable = ['calendario', 'folio', 'programa', 'dependencia', 'titular'];
+    public $timesamps = false;
 
+    
 }
