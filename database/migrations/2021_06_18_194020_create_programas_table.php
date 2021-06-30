@@ -20,7 +20,13 @@ class CreateProgramasTable extends Migration
             $table->string('programa');
             $table->string('dependencia'); 
             $table->string('titular');
-            $table->timestamps();
+            /*$table->id();
+            $table->string('nombre_titular', 6);
+            $table->integer('cabana');
+            $table->string('telefono');
+            $table->string('dias'); 
+            $table->string('precio');
+            $table->timestamps();*/
         });
     }
 

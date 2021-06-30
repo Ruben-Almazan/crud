@@ -26,7 +26,7 @@ class PrestadorFactory extends Factory
             'codigo' => $this->faker->randomNumber(9, true),
             'correo' => $this->faker->unique()->safeEmail(),
             'telefono' => $this->faker->phoneNumber(),
-            'carrera_id' => $this->faker->numberBetween(1, 3),
+            'carrerass_id' => $this->faker->numberBetween(1, 3),
         ];
     }
 }

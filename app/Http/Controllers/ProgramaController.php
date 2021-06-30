@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Programa;
+use App\Models\Prestador;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
+
 
 class ProgramaController extends Controller
 {
@@ -11,6 +16,9 @@ class ProgramaController extends Controller
 
     public function __construct()
     {
+        $this->middleware('auth')->except('show');
+        //$this->authorizeResource(Programa::class, 'programa');
+
         $this->rules = [
             'titular' => ['required', 'string', 'min:5', 'max:255'],
             'programa' => ['required', 'string', 'min:5', 'max:255'],
@@ -27,7 +35,9 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-        $programas = Programa::all();
+        //$programas = Programa::all();
+        //Seguir utilizando $programas = Auth::user()->programas()->with('user')->get();
+        $programas = Programa::with('user:id,name')->get();
         return view('programa.programaIndex', compact('programas'));
     }
 
@@ -38,6 +48,7 @@ class ProgramaController extends Controller
      */
     public function create()
     {
+        Gate::authorize('admin-programas');
         return view('programa.programaForm');
     }
 
@@ -57,8 +68,9 @@ class ProgramaController extends Controller
         $programa->titular = $request->titular;        
         $programa->save();
         return redirect()->route('programa.index');*/
-        
+        Gate::authorize('admin-programas');
         $request->validate($this->rules);
+        $request->merge(['user_id' => $request->user()->id]);
         Programa::create($request->all());
         return redirect()->route('programa.index');
     }
@@ -71,7 +83,8 @@ class ProgramaController extends Controller
      */
     public function show(Programa $programa)
     {
-        return view('programa.programaShow', compact('programa'));
+        $prestadores = Prestador::get();
+        return view('programa.programaShow', compact('programa', 'prestadores'));
     }
 
     /**
@@ -82,6 +95,7 @@ class ProgramaController extends Controller
      */
     public function edit(Programa $programa)
     {
+        //$this->authorize('update', $programa);
         return view('programa.programaForm', compact('programa'));
     }
 
@@ -94,6 +108,9 @@ class ProgramaController extends Controller
      */
     public function update(Request $request, Programa $programa)
     {
+        if($request->user()->cannot('update', $programa)) {
+            abort(403);
+        }
         $request->validate($this->rules + ['folio' => [
             'required',
             'integer',
@@ -118,5 +135,19 @@ class ProgramaController extends Controller
     {
         $programa->delete();
         return redirect()->route('programa.index');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Programa  $programa
+     * @return \Illuminate\Http\Response
+     */
+    public function agregaPrestador(Request $request, Programa $programa)
+    {
+        //dd($request->all(), $programa);
+        $programa->prestadores()->sync($request->prestador_id);
+        return redirect()->route('programa.show', $programa);
     }
 }

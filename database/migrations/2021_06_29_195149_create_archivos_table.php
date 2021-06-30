@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserIdToProgramasTable extends Migration
+class CreateArchivosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddUserIdToProgramasTable extends Migration
      */
     public function up()
     {
-        Schema::table('programas', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->after('titular');
-
+        Schema::create('archivos', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre_original');
+            $table->string('ruta');
+            $table->string('mime');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +29,6 @@ class AddUserIdToProgramasTable extends Migration
      */
     public function down()
     {
-        Schema::table('programas', function (Blueprint $table) {
-            $table->dropColumn('user_id');
-        });
+        Schema::dropIfExists('archivos');
     }
 }

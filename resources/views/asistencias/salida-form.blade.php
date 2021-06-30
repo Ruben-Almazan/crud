@@ -1,17 +1,15 @@
 @extends('layouts.windmill')
 @section('contenido')
-<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Mis reservas</h2>
+<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Listado de Programas</h2>
 
-<div>
-<a class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" href="{{ route('programa.create') }}">
-Solicitar cabaña
-                </a>
-				</div>   
-<br>
 
 
 <!-- With actions -->
-
+<h4
+              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+            >
+              Registro de salidas
+            </h4>
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
@@ -19,61 +17,39 @@ Solicitar cabaña
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-					<th class="px-4 py-3">Folio</th>
-					<th class="px-4 py-3">Nombre del Titular</th>
-					<th class="px-4 py-3">Cabaña</th>
-					<th class="px-4 py-3">Telefono</th>
-					<th class="px-4 py-3">Dias de estancia</th>
-          <th class="px-4 py-3">Precio Final</th>
+					<th class="px-4 py-3">Prestador</th>
+                    <th class="px-4 py-3">Programa</th>
+					<th class="px-4 py-3">Fecha</th>
+					<th class="px-4 py-3">Entrada</th>
 					<th class="px-4 py-3">Acciones</th>
-                    </tr>
+					</tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-				  @foreach ($programas as $programa)
+				  @foreach ($asistencias as $asistencia)
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
                           <!-- Avatar with inset shadow -->
-                           <a href=" {{route('programa.show', $programa->id)}} ">{{ $programa->programa }}</a>
+                           {{ $asistencia->prestador->nombre }}
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-					  {{ $programa->dependencia }}
+					  {{ $asistencia->programa->programa }}
                       </td>
                       <td class="px-4 py-3 text-xs">
-					  {{ $programa->calendario }}
+					  {{ $asistencia->fecha }}
                       </td>
                       <td class="px-4 py-3 text-sm">
-					  {{ $programa->titular }}
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-					  {{ $programa->user->name }}
-                      </td>
-					  <td class="px-4 py-3 text-sm">
-					  {{ $programa->folio }}
+					  {{ $asistencia->entrada }}
                       </td>
                       <td class="px-4 py-3">
-                        <div class="flex items-center space-x-4 text-sm">
                         
-                          <a
-                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Edit"
-							            href=" {{route('programa.edit', $programa)}} "
-                          >
-                            <svg
-                              class="w-5 h-5"
-                              aria-hidden="true"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
-                              ></path>
-                            </svg>
-                          </a>
-                          <button
+                        <form action="{{route('asistencia.registrarSalida', $asistencia)}}" method="POST">
+                        @csrf
+                        <div class="flex items-center space-x-4 text-sm">
+                        <button
                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Delete"
                           >
@@ -90,7 +66,7 @@ Solicitar cabaña
                               ></path>
                             </svg>
                           </button>
-                        
+                          </form>
                         </div>
                       </td>
                     </tr>
