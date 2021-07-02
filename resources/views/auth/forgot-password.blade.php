@@ -26,7 +26,7 @@
             <img
               aria-hidden="true"
               class="object-cover w-full h-full dark:hidden"
-              src="https://windmill-dashboard.vercel.app/assets/img/forgot-password-office.jpeg"
+              src="https://imagenescityexpress.scdn6.secure.raxcdn.com/sites/default/files/2017-12/tapalpa-jalisco.jpg"
               alt="Office"
             />
             <img
@@ -38,10 +38,10 @@
           </div>
           <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div class="w-full">
-              <h1
+              <h1 align="center"
                 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
               >
-                Forgot password
+                Recuperación de contraseña
               </h1>
 
               @if($errors->any())
@@ -59,10 +59,10 @@
                 @csrf
 
               <label class="block text-sm">
-                <span class="text-gray-700 dark:text-gray-400">Email</span>
+                <span class="text-gray-700 dark:text-gray-400">Escrbe tu Email</span>
                 <input
-                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  placeholder="JaneDoe@gmail.com"
+                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-green-400 focus:outline-none focus:shadow-outline-green dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                  placeholder="example@example.com"
                   name="email"
                   id="email"
                   value="{{old('email')}}"
@@ -71,9 +71,9 @@
 
               <!-- You should use a button here, as the anchor is only used for the example  -->
               <button
-                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green"
               >
-                Recover password
+                Recupera tu contraseña
               </button>
               </form>
             </div>

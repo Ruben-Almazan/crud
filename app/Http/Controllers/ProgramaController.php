@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Models\Programa;
 use App\Models\Prestador;
 use Illuminate\Http\Request;
@@ -20,11 +21,11 @@ class ProgramaController extends Controller
         //$this->authorizeResource(Programa::class, 'programa');
 
         $this->rules = [
-            'titular' => ['required', 'string', 'min:5', 'max:255'],
-            'programa' => ['required', 'string', 'min:5', 'max:255'],
-            'dependencia' => ['required', 'string', 'max:255'],
-            'folio' => ['required', 'integer', 'min:1'],
-            'calendario' => ['required', 'string', 'min:4', 'max:6']       
+            'nombre_titular' => ['required', 'string', 'min:2', 'max:255'],
+            'cabana' => ['required', 'string', 'min:1', 'max:255'],
+            'telefono' => ['required', 'string', 'max:255'],
+            'dias' => ['required', 'integer', 'min:1', 'max:14'],
+            'pago' => ['required', 'string', 'min:2', 'max:50']       
         ];
     }
     
@@ -48,7 +49,8 @@ class ProgramaController extends Controller
      */
     public function create()
     {
-        Gate::authorize('admin-programas');
+        //Gate::authorize('admin-programas');
+        //Session::flash('save', 'Si se creó, Si funciona');
         return view('programa.programaForm');
     }
 
@@ -60,6 +62,7 @@ class ProgramaController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         /*$programa = new Programa();
         $programa->calendario = $request->calendario;
         $programa->folio = $request->folio;
@@ -68,11 +71,11 @@ class ProgramaController extends Controller
         $programa->titular = $request->titular;        
         $programa->save();
         return redirect()->route('programa.index');*/
-        Gate::authorize('admin-programas');
+        //Gate::authorize('admin-programas');
         $request->validate($this->rules);
         $request->merge(['user_id' => $request->user()->id]);
         Programa::create($request->all());
-        return redirect()->route('programa.index');
+        return redirect()->route('programa.index')->with('status', 'Nuevo Registro Creado Exitosamente');
     }
 
     /**
@@ -108,21 +111,17 @@ class ProgramaController extends Controller
      */
     public function update(Request $request, Programa $programa)
     {
-        if($request->user()->cannot('update', $programa)) {
+        /*if($request->user()->cannot('update', $programa)) {
             abort(403);
-        }
-        $request->validate($this->rules + ['folio' => [
-            'required',
-            'integer',
-            Rule::unique('programa')->ignore($programa->id),
-        ]]);
-        $programa->calendario = $request->calendario;
-        $programa->folio = $request->folio;
-        $programa->programa = $request->programa;
-        $programa->dependencia = $request->dependencia;
-        $programa->titular = $request->titular;        
+        }*/
+        $request->validate($this->rules);
+        $programa->nombre_titular = $request->nombre_titular;
+        $programa->cabana = $request->cabana;
+        $programa->telefono = $request->telefono;
+        $programa->dias = $request->dias;
+        $programa->pago = $request->pago;        
         $programa->save();
-        return redirect()->route('programa.show', $programa);
+        return redirect()->route('programa.show', $programa)->with('status', 'Registro Editado Exitosamente');
     }
 
     /**
@@ -134,7 +133,7 @@ class ProgramaController extends Controller
     public function destroy(Programa $programa)
     {
         $programa->delete();
-        return redirect()->route('programa.index');
+        return redirect()->route('programa.index')->with('status', 'Registro Eliminado');
     }
 
     /**
@@ -150,4 +149,12 @@ class ProgramaController extends Controller
         $programa->prestadores()->sync($request->prestador_id);
         return redirect()->route('programa.show', $programa);
     }
+
+    public function documento(Programa $programa)
+    {
+        //dd($request->all(), $programa);
+        $programa = Programa::all(); 
+        return view('programa.programapdf', compact('programa'));   
+    }
+
 }

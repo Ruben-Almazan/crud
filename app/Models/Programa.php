@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Programa extends Model
 {
     use HasFactory;
-    protected $fillable = ['calendario', 'folio', 'programa', 'dependencia', 'titular', 'user_id'];
+    protected $fillable = ['nombre_titular', 'cabana', 'telefono', 'dias', 'pago', 'user_id'];
 
     public function user()
     {

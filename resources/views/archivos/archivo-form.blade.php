@@ -4,7 +4,15 @@
 <html lang="es">
 	
 	<body>
-	<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Formulario de Programas</h2>
+	<br>
+<a class="flex items-center center p-4 mb-8 text-sm font-family:verdana text-purple-100 bg-green-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple">
+              <div class="flex items-center">
+              </div>
+              <span style="width: 100%;text-align: center">
+              
+                            
+        <FONT FACE="Arial" SIZE=4 COLOR="white">Editar archivo</FONT>
+    </a>
 
 	@if($errors->any())
 	<div class="alert alert-danger">
@@ -27,14 +35,14 @@
                   <span class="text-gray-700 dark:text-gray-400">
                         Seleccione el archivo a cargar
                   </span>
-                  <input type="file" name="archivo" id="archivo">
+                  <input multiple type="file" name="archivo" id="archivo">
             </form>
             <hr>      
-			  
+			  <br>
             <button
-              		class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+              		class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple"
             >
-              Cargar
+              Cargar nuevo archivo
               <span class="ml-3" aria-hidden="true">+</span>
             </button>
 			  </form>

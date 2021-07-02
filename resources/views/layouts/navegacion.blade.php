@@ -4,9 +4,11 @@
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-            href="#"
+            href="http://ssocial.test/"
           >
-            Windmill
+          <center>
+          <FONT FACE="Arial" SIZE=4 COLOR="#04940B"><b>Cabañas "La Calma"</b> </FONT>
+          </center>
           </a>
           @auth
           <ul class="mt-6">
@@ -20,7 +22,7 @@
               <!-- Add this classes to an active anchor (a tag) -->
               <!-- text-gray-800 dark:text-gray-100 -->
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-800 dark:hover:text-green-200"
                 href="http://ssocial.test/"
               >
                 <svg
@@ -44,7 +46,7 @@
           <ul>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-800 dark:hover:text-green-200"
                 href="{{route('programa.index')}}"
               >
                 <svg
@@ -61,13 +63,30 @@
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                   ></path>
                 </svg>
-                <span class="ml-4">Programas</span>
+                <span class="ml-4">Mis reservas</span>
+              </a>
+            </li>
+            <ul>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-800 dark:hover:text-green-200"
+                href="http://ssocial.test/archivo"
+              >
+              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                  <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+                
+                  <path
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                  ></path>
+                </svg>
+                <span class="ml-4">Archivos</span>
               </a>
             </li>
             
             <li class="relative px-6 py-3">
               <button
-                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-green-800 dark:hover:text-green-200"
                 @click="togglePagesMenu"
                 aria-haspopup="true"
               >
@@ -113,32 +132,16 @@
                   aria-label="submenu"
                 >
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-green-800 dark:hover:text-green-200"
                   >
-                    <a class="w-full" href="{{route('asistencia.formEntrada')}}">Ingresar asistencias</a>
+                    <a class="w-full" href="{{route('asistencia.formEntrada')}}">Registro de Entradas</a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-green-800 dark:hover:text-green-200"
                   >
-                    <a class="w-full" href="{{route('asistencia.formSalida')}}"> Ingresar Salidas </a>
+                    <a class="w-full" href="{{route('asistencia.formSalida')}}">Registro de Salidas </a>
                   </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="./forgot-password.html">
-                    Ejemplo SubMenu 3
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="./404.html">Ejemplo SubMenu 4</a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="./blank.html">Ejemplo SubMenu 5</a>
-                  </li>
+        
                 </ul>
               </template>
             </li>
@@ -147,7 +150,7 @@
           @guest
            <div class="px-6 my-6"> 
               <a
-              class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+              class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple"
             href="{{route('register')}}">
               Registrate
               <span class="ml-2" aria-hidden="true">+</span>

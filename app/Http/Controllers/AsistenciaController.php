@@ -93,7 +93,7 @@ class AsistenciaController extends Controller
 
         if(!empty($programa_id))
         {
-            //$prestadores = Prestador::where('programa_id', $progma_id)->get();
+            //$prestadores = Prestador::where('programa_id', $programa_id)->get();
             $prestadores = Programa::find($programa_id)->prestadores()->get();
         }else{
             $prestadores = [];

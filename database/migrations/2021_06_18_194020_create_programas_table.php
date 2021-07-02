@@ -14,19 +14,19 @@ class CreateProgramasTable extends Migration
     public function up()
     {
         Schema::create('programas', function (Blueprint $table) {
-            $table->id();
+            /*$table->id();
             $table->string('calendario', 6);
             $table->integer('folio');
             $table->string('programa');
             $table->string('dependencia'); 
-            $table->string('titular');
-            /*$table->id();
-            $table->string('nombre_titular', 6);
-            $table->integer('cabana');
+            $table->string('titular');*/
+            $table->id();
+            $table->string('nombre_titular');
+            $table->string('cabana');
             $table->string('telefono');
-            $table->string('dias'); 
-            $table->string('precio');
-            $table->timestamps();*/
+            $table->integer('dias'); 
+            $table->integer('precio');
+            $table->timestamps();
         });
     }
 

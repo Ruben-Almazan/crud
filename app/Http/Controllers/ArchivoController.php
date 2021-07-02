@@ -68,7 +68,10 @@ class ArchivoController extends Controller
      */
     public function edit(Archivo $archivo)
     {
-        //
+       $archivo->delete(); 
+       $archivo = new Archivo();
+        return view('archivos.archivo-form');    
+        
     }
 
     /**
@@ -91,6 +94,7 @@ class ArchivoController extends Controller
      */
     public function destroy(Archivo $archivo)
     {
-        //
+        $archivo->delete();
+        return redirect()->route('archivo.index');
     }
 }

@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SSocial</title>
+    <title>Cabañas "La Calma"</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -57,7 +57,8 @@
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
             href="#"
           >
-            Windmill
+            Windmhsill
+            <img src="https://drive.google.com/file/d/1MepgaRquQvW4f8hwBLK9lZFdT1REIyjF/view?usp=sharing">
           </a>
           @auth
           <ul class="mt-6">
@@ -173,23 +174,6 @@
                   >
                     <a class="w-full" href="{{route('asistencia.formSalida')}}"> Ingresar Salidas </a>
                   </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="./forgot-password.html">
-                    Ejemplo SubMenu 3
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="./404.html">Ejemplo SubMenu 4</a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="./blank.html">Ejemplo SubMenu 5</a>
-                  </li>
                 </ul>
               </template>
             </li>
@@ -198,7 +182,7 @@
            @guest
            <div class="px-6 my-6"> 
               <a
-              class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+              class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple"
             href="{{route('register')}}">
               Registrate
               <span class="ml-2" aria-hidden="true">+</span>
@@ -208,8 +192,8 @@
         </div>
       </aside>
       <div class="flex flex-col flex-1">
-        <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
-          <div
+        <header style="color: #04940B;" class="z-10 py-4 bg-green shadow-md dark:bg-gray-800">
+          <div style="color: #04940B;"
             class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
           >
             <!-- Mobile hamburger -->
@@ -279,7 +263,7 @@
               @guest
               <div>
                 <a
-                  class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                  class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-md active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple"
                 href="{{route('login')}}">
                   Inicia Sesión
                 </a>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crear cuenta</title>
+    <title>Iniciar sesión</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -25,7 +25,7 @@
             <img
               aria-hidden="true"
               class="object-cover w-full h-full dark:hidden"
-              src="https://windmill-dashboard.vercel.app/assets/img/login-office.jpeg"
+              src="https://imagenes.milenio.com/w4QoqKYpKJ3vAXgwWpIIwyzK8EY=/958x596/https://www.milenio.com/uploads/media/2020/08/05/tapalpa-jalisco-cortesia_0_13_979_610.jpg"
               alt="Office"
             />
             <img
@@ -37,10 +37,10 @@
           </div>
           <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div class="w-full">
-              <h1
+              <h1 align="center"
                 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
               >
-                Ingresar
+                Ingresar al sistema
               </h1>
               @if($errors->any())
 	            <div class="alert alert-danger">
@@ -59,8 +59,8 @@
                 <span class="text-gray-700 dark:text-gray-400">{{ __('Email') }}</span>
                 <input
                   type="email"
-                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  placeholder="JaneDoe@gmail.com"
+                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-green-400 focus:outline-none focus:shadow-outline-green dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                  placeholder="example@example.com"
                   name="email"
                   id="email"
                   value="{{old('email')}}"
@@ -69,7 +69,7 @@
               <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">{{ __('Password') }}</span>
                 <input
-                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-green-400 focus:outline-none focus:shadow-outline-green dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                   placeholder="***************"
                   type="password"
                   name="password"
@@ -80,7 +80,7 @@
 
               <!-- You should use a button here, as the anchor is only used for the example  -->
               <button
-                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green"
               >
                 Inicia sesión
               </button>
@@ -88,18 +88,18 @@
               
               <p class="mt-4">
                 <a
-                  class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                align="center" class="text-sm font-medium text-green-600 dark:text-green-400 hover:underline"
                   href="{{ route('password.request') }}"
                 >
-                  Forgot your password?
+                  ¿Has olvidado tu contraseña?. Recuperala aquí.
                 </a>
               </p>
               <p class="mt-1">
                 <a
-                  class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                  class="text-sm font-medium text-green-600 dark:text-green-400 hover:underline"
                   href="{{ route('register') }}"
                 >
-                  Crear cuenta
+                  ¿Aún no tienes una cuenta? Crear una cuenta aquí.
                 </a>
               </p>
             </div>

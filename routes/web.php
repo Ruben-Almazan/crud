@@ -55,10 +55,10 @@ Route::post('asistencia/entrada', [AsistenciaController::class, 'registrarEntrad
 Route::get('asistencia/salida', [AsistenciaController::class, 'formSalida'])->name('asistencia.formSalida');
 Route::post('asistencia/salida/{asistencia}', [AsistenciaController::class, 'registrarSalida'])->name('asistencia.registrarSalida');
 
-Route::resource('archivo', ArchivoController::class)->except('edit', 'update', 'show');
+Route::resource('archivo', ArchivoController::class)->except('update', 'show');
 Route::get('archivo/descargar/{archivo}', [ArchivoController::class, 'descargar'])->name('archivo.descargar');
 
-
+Route::get('/pdf', 'PDFController@PDF')->name('descargarPDF');
 
 /*Route::get('/tarea', [TareaController::class, 'index']);
 Route::get('/tarea/create', [TareaController::class, 'create']);
