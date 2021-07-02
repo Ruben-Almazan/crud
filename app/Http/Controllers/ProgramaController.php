@@ -19,7 +19,7 @@ class ProgramaController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('show');
-        //$this->authorizeResource(Programa::class, 'programa');
+        $this->authorizeResource(Programa::class, 'programa');
 
         $this->rules = [
             'nombre_titular' => ['required', 'string', 'min:2', 'max:255'],
@@ -38,8 +38,8 @@ class ProgramaController extends Controller
     public function index()
     {
         //$programas = Programa::all();
-        //$programas = Auth::user()->programas()->with('user')->get();
-        $programas = Programa::with('user:id,name')->get();
+        $programas = Auth::user()->programas()->get();
+        //$programas = Programa::with('user:id,name')->get();
         return view('programa.programaIndex', compact('programas'));
     }
 
@@ -50,9 +50,7 @@ class ProgramaController extends Controller
      */
     public function create()
     {
-        if(!Gate::allows('admin-programas')){
-            abort(403);
-        }
+        //$this->authorize('create');
         return view('programa.programaForm');
     }
 
@@ -88,6 +86,9 @@ class ProgramaController extends Controller
      */
     public function show(Programa $programa)
     {
+        if(!Gate::allows('admin-programas')){
+            abort(403);
+        }
         $prestadores = Prestador::get();
         return view('programa.programaShow', compact('programa', 'prestadores'));
     }
@@ -100,7 +101,7 @@ class ProgramaController extends Controller
      */
     public function edit(Programa $programa)
     {
-        //$this->authorize('update', $programa);
+        $this->authorize('update', $programa);
         return view('programa.programaForm', compact('programa'));
     }
 

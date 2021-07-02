@@ -7,6 +7,9 @@
               <span style="width: 100%;text-align: center">
         <FONT FACE="Arial" SIZE=4 COLOR="white">Archivos del personal</FONT>
     </a>
+    @if(session('status'))
+<div class="alert alert-success">{{session('status')}}</div>
+@endif
 <form action="{{ route('archivo.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
                 <label class="block mt-4 text-sm">

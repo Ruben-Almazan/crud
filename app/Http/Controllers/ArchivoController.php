@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Archivo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class ArchivoController extends Controller
 {
@@ -37,6 +38,9 @@ class ArchivoController extends Controller
      */
     public function store(Request $request)
     {
+        if(!Gate::allows('admin-programas')){
+            abort(403);
+        }
         if($request->hasFile('archivo') && $request->file('archivo')->isValid())
         {
             $ruta = $request->archivo->store('documentos');
@@ -46,7 +50,7 @@ class ArchivoController extends Controller
             $archivo->mime = $request->archivo->getMimeType();
             $archivo->save();
         }
-        return redirect()->route('archivo.index');
+        return redirect()->route('archivo.index')->with('status', 'Nuevo Archivo Guardado Exitosamente');
     }
 
     /**
@@ -56,7 +60,10 @@ class ArchivoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function descargar(Archivo $archivo)
-    {
+    {       
+        if(!Gate::allows('admin-programas')){
+            abort(403);
+        }
         return Storage::download($archivo->ruta, $archivo->nombre_original, ['Content-Type' => $archivo->mime]);
     }
 
@@ -68,9 +75,12 @@ class ArchivoController extends Controller
      */
     public function edit(Archivo $archivo)
     {
-       $archivo->delete(); 
+        if(!Gate::allows('admin-programas')){
+            abort(403);
+        }
+        $archivo->delete(); 
        $archivo = new Archivo();
-        return view('archivos.archivo-form');    
+        return view('archivos.archivo-form')->with('status', 'Archivo Editado Exitosamente');    
         
     }
 
@@ -94,7 +104,10 @@ class ArchivoController extends Controller
      */
     public function destroy(Archivo $archivo)
     {
+        if(!Gate::allows('admin-programas')){
+            abort(403);
+        }
         $archivo->delete();
-        return redirect()->route('archivo.index');
+        return redirect()->route('archivo.index')->with('status', 'Archivo Eliminado Exitosamente');
     }
 }

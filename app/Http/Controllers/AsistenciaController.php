@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Programa;
 use App\Models\Prestador;
 use App\Models\Asistencia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+
 
 class AsistenciaController extends Controller
 {
+    public function __construct()
+    {
+        
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +25,7 @@ class AsistenciaController extends Controller
      */
     public function index()
     {
-        //
+     //
     }
 
     /**
@@ -88,9 +96,11 @@ class AsistenciaController extends Controller
 
     public function formEntrada(Request $request)
     {
+        if(!Gate::allows('admin-programas')){
+            abort(403);
+        }
         $programas = Programa::all();
         $programa_id = $request->programa_id;
-
         if(!empty($programa_id))
         {
             //$prestadores = Prestador::where('programa_id', $programa_id)->get();
@@ -103,6 +113,9 @@ class AsistenciaController extends Controller
 
     public function registrarEntrada(Request $request)
     {
+        if(!Gate::allows('admin-programas')){
+            abort(403);
+        }
         $request->merge([
             'fecha' => today(),
             'entrada' => now(),
@@ -114,12 +127,18 @@ class AsistenciaController extends Controller
 
     public function formSalida(Request $request)
     {
+        if(!Gate::allows('admin-programas')){
+            abort(403);
+        }
         $asistencias = Asistencia::whereNull('salida')->with('programa', 'prestador')->get();
         return view('asistencias.salida-form', compact('asistencias'));
     }
 
     public function registrarSalida(Asistencia $asistencia)
     {
+        if(!Gate::allows('admin-programas')){
+            abort(403);
+        }
         $asistencia->salida = now();
         $asistencia->save();
         return redirect()->route('asistencia.formSalida');

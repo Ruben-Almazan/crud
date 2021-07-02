@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Asistencia;
+use App\Models\Archivo;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class AsistenciaPolicy
+class ArchivoPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class AsistenciaPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Asistencia  $asistencia
+     * @param  \App\Models\Archivo  $archivo
      * @return mixed
      */
-    public function view(User $user, Asistencia $asistencia)
+    public function view(User $user, Archivo $archivo)
     {
         //
     }
@@ -48,34 +48,34 @@ class AsistenciaPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Asistencia  $asistencia
+     * @param  \App\Models\Archivo  $archivo
      * @return mixed
      */
-    public function update(User $user, Asistencia $asistencia)
+    public function update(User $user, Archivo $archivo)
     {
-        //
+        return $user->tipo == 'Administrador'; 
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Asistencia  $asistencia
+     * @param  \App\Models\Archivo  $archivo
      * @return mixed
      */
-    public function delete(User $user, Asistencia $asistencia)
+    public function delete(User $user, Archivo $archivo)
     {
-        //
+        return $user->tipo == 'Cliente'; 
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Asistencia  $asistencia
+     * @param  \App\Models\Archivo  $archivo
      * @return mixed
      */
-    public function restore(User $user, Asistencia $asistencia)
+    public function restore(User $user, Archivo $archivo)
     {
         //
     }
@@ -84,10 +84,10 @@ class AsistenciaPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Asistencia  $asistencia
+     * @param  \App\Models\Archivo  $archivo
      * @return mixed
      */
-    public function forceDelete(User $user, Asistencia $asistencia)
+    public function forceDelete(User $user, Archivo $archivo)
     {
         //
     }

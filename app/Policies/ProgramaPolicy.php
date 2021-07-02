@@ -18,7 +18,7 @@ class ProgramaPolicy
      */
     public function viewAny(User $user)
     {
-        //return true;
+        return true;
     }
 
     /**
@@ -42,7 +42,7 @@ class ProgramaPolicy
     public function create(User $user)
     {
         //$this->authorize('create');
-        //return $user->tipo == '';
+        //return $user->tipo == 'Cliente';
     }
 
     /**
@@ -54,7 +54,7 @@ class ProgramaPolicy
      */
     public function update(User $user, Programa $programa)
     {
-        //return $user->tipo == 'Cliente'; 
+        return $user->tipo == 'Administrador'; 
     }
 
     /**
