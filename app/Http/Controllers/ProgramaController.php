@@ -19,7 +19,7 @@ class ProgramaController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('show');
-        $this->authorizeResource(Programa::class, 'programa');
+        //$this->authorizeResource(Programa::class, 'programa');
 
         $this->rules = [
             'nombre_titular' => ['required', 'string', 'min:2', 'max:255'],
@@ -38,7 +38,12 @@ class ProgramaController extends Controller
     public function index()
     {
         //$programas = Programa::all();
-        $programas = Auth::user()->programas()->get();
+        if(Gate::allows('admin-programas')){
+            $programas = Programa::with('user:id,name')->get();
+        }else{
+            $programas = Auth::user()->programas()->get();
+        }
+        
         //$programas = Programa::with('user:id,name')->get();
         return view('programa.programaIndex', compact('programas'));
     }
