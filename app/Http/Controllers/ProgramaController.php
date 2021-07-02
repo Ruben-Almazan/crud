@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Session;
+
 use App\Models\Programa;
 use App\Models\Prestador;
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ class ProgramaController extends Controller
     public function index()
     {
         //$programas = Programa::all();
-        //Seguir utilizando $programas = Auth::user()->programas()->with('user')->get();
+        //$programas = Auth::user()->programas()->with('user')->get();
         $programas = Programa::with('user:id,name')->get();
         return view('programa.programaIndex', compact('programas'));
     }
@@ -49,8 +50,9 @@ class ProgramaController extends Controller
      */
     public function create()
     {
-        //Gate::authorize('admin-programas');
-        //Session::flash('save', 'Si se creó, Si funciona');
+        if(!Gate::allows('admin-programas')){
+            abort(403);
+        }
         return view('programa.programaForm');
     }
 

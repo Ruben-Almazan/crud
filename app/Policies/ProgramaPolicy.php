@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Programa;
 use App\Models\User;
+use App\Models\Programa;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProgramaPolicy
@@ -42,7 +42,7 @@ class ProgramaPolicy
     public function create(User $user)
     {
         //$this->authorize('create');
-        //return $user->tipo == 'Empleado';
+        //return $user->tipo == '';
     }
 
     /**
@@ -54,7 +54,7 @@ class ProgramaPolicy
      */
     public function update(User $user, Programa $programa)
     {
-        //return $user->tipo == 'Empleado'; 
+        //return $user->tipo == 'Cliente'; 
     }
 
     /**
